@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: employee
+server:
+  port: 8089
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8088/eureka/
