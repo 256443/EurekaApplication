@@ -92,7 +92,8 @@
 	</repositories>
 
 
-  <modules>
-    <module>Server</module>
-  </modules>
+  	<modules>
+		<module>Server</module>
+	  	<module>Employee</module>
+  	</modules>
 </project>
