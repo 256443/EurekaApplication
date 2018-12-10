@@ -5,6 +5,7 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -16,11 +17,10 @@ public class Employee {
     private String firstName;
     private String lastName;
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
+    @OneToMany(fetch = FetchType.LAZY,
             mappedBy = "employee")
-    @JoinColumn(name = "office_id", nullable = false)
-    private Office office;
+//    @JoinColumn(nullable = false)
+    private Set<Office> offices;
 
     public Employee() {
     }
@@ -30,10 +30,10 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public Employee(String firstName, String lastName, Office office) {
+    public Employee(String firstName, String lastName, Set<Office> offices) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.office = office;
+        this.offices = offices;
     }
 
     public Long getId() {
@@ -60,13 +60,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee", cascade = CascadeType.ALL)
-    public Office getOffice() {
-        return office;
+    public Set<Office> getOffices() {
+        return offices;
     }
 
-    public void setOffice(Office office) {
-        this.office = office;
+    public void setOffices(Set<Office> offices) {
+        this.offices = offices;
     }
 
     @Override
@@ -75,6 +74,7 @@ public class Employee {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", offices=" + offices +
                 '}';
     }
 }

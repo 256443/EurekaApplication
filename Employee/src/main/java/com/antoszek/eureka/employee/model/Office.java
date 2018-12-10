@@ -14,7 +14,7 @@ public class Office {
     private String position;
     private int officeNumber;
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
@@ -62,5 +62,17 @@ public class Office {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    @Override
+    public String toString() {
+        return "Office{" +
+                "id=" + id +
+                ", position='" + position + '\'' +
+                ", officeNumber=" + officeNumber +
+                ", employee=" + employee.getFirstName() +
+                ", " +employee.getLastName()
+                +", " + employee.getId()+
+                '}';
     }
 }

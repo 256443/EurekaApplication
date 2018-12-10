@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfficeService {
@@ -27,5 +28,13 @@ public class OfficeService {
     public Office save(Office office) {
         Office savedOffice = officeRepository.save(office);
         return savedOffice;
+    }
+
+    public Optional<Office> findById(Long id) {
+        Optional<Office> office = officeRepository.findById(id);
+        if(office.isPresent()){
+            return office;
+        }
+        return null;
     }
 }

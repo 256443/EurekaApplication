@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -34,4 +37,18 @@ public class EmployeeService {
         Employee savedEmployee = employeeRepository.save(employee);
         return savedEmployee;
     }
-}
+    @PostConstruct
+    public void addEmployee(){
+        Employee e = new Employee("Przemek2", "Antoszek2");
+        employeeRepository.save(e);
+    }
+
+    public Optional<Employee> findById(Long id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.isPresent()) {
+            return employee;
+        }
+        return null;
+        }
+    }
+
