@@ -1,4 +1,4 @@
-package com.example.eureka.controller;
+package com.antoszek.eureka.controller;
 
 import com.antoszek.eureka.Employee;
 import com.antoszek.eureka.Office;
